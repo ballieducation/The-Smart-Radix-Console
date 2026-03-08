@@ -1357,7 +1357,8 @@ void setup() {
   digitalWrite(BUZZER, LOW);
   for(int i=0; i<8; i++) pinMode(switchPins[i], INPUT_PULLUP);
 
-  rtc.setClockSource(STM32RTC::LSI_CLOCK);
+  //rtc.setClockSource(STM32RTC::LSI_CLOCK);    (LSI — no crystal, no battery backup)
+  rtc.setClockSource(STM32RTC::LSE_CLOCK);  //(LSE — uses crystal + CR2032 backup)
   rtc.begin(); 
   if (!rtc.isTimeSet()) 
   { 
